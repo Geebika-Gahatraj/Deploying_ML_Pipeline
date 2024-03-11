@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF=8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+        <title>StartUp Acquisition Status</title>
+    </head>
+    <body>
+        <div class="status">
+            <div class="status-text">
+          <h1 id="title">StartUp Acquisition Status Prediction</h1>
+          <p id="description">Thank you for taking the time to help us improve the platform</p>
+            </div> 
+        <div class="status-form">
+            <form id="status-form" method="post" action="/binary_predict">
+                <label for="founded_at" class="left">Founded_at</label><br>            
+                <select id="founded_at" type="number" name="founded_at">
+                    <option value="">Select</option>
+                    <script>
+                        for (var year = 1900; year <= 2023; year++) {
+                    // Creating an option element
+                    var option = document.createElement("option");
+                    // Setting the value attribute of the option
+                    option.value = year;
+                    // Setting the text content of the option
+                    option.textContent = year;
+                    // Appending the option to the select element
+                    document.getElementById("founded_at").appendChild(option);
+                }
+                    </script>
+                  </select><br><br>
+                  <label for="first_funding_at" class="left">First_funding_at</label><br>            
+                <select id="first_funding_at" name="first_funding_at">
+                    <option value="">Select</option>
+                    <script>
+                        for (var year = 1940; year <= 2024; year++) {                
+                    var option = document.createElement("option");               
+                    option.value = year;               
+                    option.textContent = year;
+                    document.getElementById("first_funding_at").appendChild(option);
+                }
+                    </script>
+                  </select><br><br>
+                  <label for="last_funding_at" class="left">Last_funding_at</label><br>            
+                <select id="last_funding_at" name="last_funding_at">
+                    <option value="">Select</option>
+                    <script>
+                        for (var year = 1940; year <= 2024; year++) {                
+                    var option = document.createElement("option");               
+                    option.value = year;               
+                    option.textContent = year;
+                    document.getElementById("last_funding_at").appendChild(option);
+                }
+                    </script>
+                  </select><br>
+                  
+                </script>
+                </select><br>
+                <label for="funding_rounds" class="right">Funding_rounds</label><br>
+                <input type="number" id="funding_rounds" name="funding_rounds" placeholder="Select funding rounds" step="0.00001" min="1.00000" max="1.59999"><br>
+    
+                <label for="funding_total_usd" class="right">Funding_total_usd</label><br>
+                  <input type="number" id="funding_total_usd" name="funding_total_usd" placeholder="Select " step="0000001.0" min="1000000.0" max="10000000.0"><br> 
+                  <br>
+          
+                <label for="first_milestone_at" class="left">First_milestone_at</label><br>            
+                <select id="first_milestone_at" name="first_milestone_at">
+                <option value="">Select</option>
+                 <script>
+                  for (var year = 1959; year <= 2024; year++) {                
+                    var option = document.createElement("option");               
+                    option.value = year;               
+                    option.textContent = year;
+                     document.getElementById("first_milestone_at").appendChild(option);
+                     }
+                    </script>
+                    </select><br>
+                <label for="last_milestone_at" class="left">Last_milestone_at</label><br>            
+                <select id="last_milestone_at" name="last_milestone_at">
+                    <option value="">Select</option>
+                    <script>
+                        for (var year = 1959; year <= 2024; year++) {                
+                            var option = document.createElement("option");               
+                            option.value = year;               
+                            option.textContent = year;
+                            document.getElementById("last_milestone_at").appendChild(option);
+                             }
+                    </script>
+                  </select><br>
+    
+                  <label for="milestones" class="right">Milestones</label><br>
+                  <input type="number" id="milestones" name="milestones" placeholder="Select " step="0.00000001" min="1.00000000" max="10.00000000"><br>
+                  <label for="relationships" class="right">Relationships</label><br>
+                  <input type="number" id="relationships" name="relationships" placeholder="Select " step="0.00000001" min="1.00000000e+00" max="10.00000000e+99"><br> 
+                  <br><br>
+                 <input type="submit" value="Predict">
+              </form>
+            </div> 
+            </div>
+            <div id="'results">
+                {% if results %}
+                    <h2>Prediction Results:</h2>
+                    <p>Binary Prediction: {{results['Binary Prediction']}}</p>
+                    <!-- <p>Multiclass Prediction : {{results['Multiclass Predicition']}}</p> -->
+                {% endif %}
+
+
+            </div>
+    </body>
+
+</html>
